@@ -1,13 +1,14 @@
 import './App.css'
 import { MainMap } from './components/MainMap'
+import { useGeoLocation } from './useGeoLocation';
 
 const App = () => {
-  console.log("app");
+  const coordinates = useGeoLocation();  
   
   return (
     <>
       <h1>Geodraw</h1>
-      <MainMap />
+      <MainMap coordinates={coordinates} />
     </>
   )
 }

@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 
 const INITIAL_COORDINATES = { lat: 39.4671399, lon: -0.3557275 };
 
+export type Coordinates = {
+  lat: number;
+  lon: number;
+}
+
 export const useGeoLocation = () => {
-  const [coordinates, setCoordinates] = useState<{
-    lat: number;
-    lon: number;
-  }>(INITIAL_COORDINATES);
+  const [coordinates, setCoordinates] = useState<Coordinates>(INITIAL_COORDINATES);
 
   useEffect(() => {
     if (navigator.geolocation) {

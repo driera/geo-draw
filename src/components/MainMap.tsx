@@ -1,9 +1,10 @@
 import maplibregl, { Map } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { FunctionComponent, useEffect, useRef } from 'react';
+import { Coordinates } from '../useGeoLocation';
 import './MainMap.css';
 
-export const MainMap: FunctionComponent = () => {
+export const MainMap: FunctionComponent<{coordinates: Coordinates}> = ({coordinates}) => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<Map | null>(null);
   
@@ -17,10 +18,17 @@ export const MainMap: FunctionComponent = () => {
       center: [0, 0],
       zoom: 1
     });
+
+    window.map = map.current;
   },[]);
 
-  return (
+  useEffect(() => {
+    if(coordinates && map.current) {      
+      map.current.setZoom(10).setCenter(coordinates);
+    }
+  }, [coordinates]);
 
+  return (
     <div ref={mapContainer} className="map-container" />
   )
 }
