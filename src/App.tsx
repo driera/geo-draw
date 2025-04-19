@@ -6,7 +6,7 @@ const App = () => {
   
   return (
     <>
-      <h1>GEO DRAW</h1>
+      <h1>Geodraw</h1>
       <MainMap />
     </>
   )
