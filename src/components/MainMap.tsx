@@ -2,7 +2,7 @@ import maplibregl, { LngLat, Map, MapMouseEvent, Point } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { FunctionComponent, useEffect, useRef } from 'react';
 import { Coordinates } from '../useGeoLocation';
-import './MainMap.css';
+import styles from './MainMap.module.css';
 
 type MainMapProps = { userLocationCoordinates: Coordinates, onMouseMove: ({ lngLat, point }: { lngLat: LngLat, point: Point }) => void };
 
@@ -44,7 +44,7 @@ export const MainMap: FunctionComponent<MainMapProps> = ({ userLocationCoordinat
   }, [onMouseMove])
 
   return (
-    <div ref={mapContainer} className="map-container" />
+    <div ref={mapContainer} className={styles.mapContainer} />
   )
 }
 

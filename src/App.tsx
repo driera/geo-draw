@@ -1,8 +1,8 @@
 import { LngLat, Point } from 'maplibre-gl';
-import './App.css'
 import { MainMap } from './components/MainMap'
 import { useGeoLocation } from './useGeoLocation';
 import { useState } from 'react';
+import styles from './App.module.css';
 
 type Pointer = {lngLat: LngLat, point: Point};
 
@@ -17,10 +17,9 @@ const App = () => {
   };
   
   return (
-    <div style={{position: "relative", width: "100vw", height: "100vh"}}>
-      <h1>Geodraw</h1>
+    <div className = {styles.container}>
       {pointer && (
-        <div style={{position: "absolute", bottom: 40, left: 0, zIndex: 1}}>{pointer.lngLat.lng} {pointer.lngLat.lat}</div>
+        <div className={styles.coordinates}>{pointer.lngLat.lng} {pointer.lngLat.lat}</div>
       )}
       <MainMap userLocationCoordinates={coordinates} onMouseMove={exposePointer}/>
     </div>
