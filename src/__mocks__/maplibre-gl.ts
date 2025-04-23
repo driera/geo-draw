@@ -1,4 +1,5 @@
 import { Listener, MapOptions, Subscription } from "maplibre-gl";
+import { setMapReference } from "./maplibre-ref";
 
 class Evented {
   private handlers: Record<string, Listener[]> = {};
@@ -37,6 +38,7 @@ export class MockMap extends Evented {
   constructor(options: MapOptions) {
     super();
     this.options = options;
+    setMapReference(this);
   }
 
   on(event: string, handler: Listener): Subscription {
