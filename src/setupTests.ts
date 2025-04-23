@@ -5,6 +5,19 @@
 import "@testing-library/jest-dom";
 import { TextEncoder } from "node:util";
 
+jest.mock('maplibre-gl', () => {
+  const { MockMap } = jest.requireActual("./__mocks__/maplibre-gl");
+  const Map = jest.fn().mockImplementation(options => new MockMap(options));
+
+  return {
+    __esModule: true,
+    default: {
+      Map
+    },
+    Map
+  };
+});
+  
 declare global {
   interface Window {
     language: string;
